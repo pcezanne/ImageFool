@@ -130,9 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				AAFB9E6917AC0A25001699B4 /* IFFullImage */,
-				AADE338B17AC0BE200F4189A /* IFFullImageViewController.h */,
-				AADE338C17AC0BE200F4189A /* IFFullImageViewController.m */,
-				AADE338D17AC0BE200F4189A /* IFFullImageViewController.xib */,
 				AA1B2A7917AAFE7800D2C926 /* Flickr Interface */,
 				AA1B2A7317AAEFDF00D2C926 /* IFURLImage */,
 				AA1B2A6D17AAE1D200D2C926 /* IFImageCell */,
@@ -193,6 +190,9 @@
 		AAFB9E6917AC0A25001699B4 /* IFFullImage */ = {
 			isa = PBXGroup;
 			children = (
+				AADE338B17AC0BE200F4189A /* IFFullImageViewController.h */,
+				AADE338C17AC0BE200F4189A /* IFFullImageViewController.m */,
+				AADE338D17AC0BE200F4189A /* IFFullImageViewController.xib */,
 			);
 			name = IFFullImage;
 			sourceTree = "<group>";
