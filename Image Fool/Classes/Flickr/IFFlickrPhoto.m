@@ -46,7 +46,12 @@
             NSDictionary *photo = [photos objectAtIndex:0];     // only use the first one
             
             self.name = [photo objectForKey:@"title"];
-            self.url = [NSString stringWithFormat:@"http://farm%@.static.flickr.com/%@/%@_%@.jpg", [photo objectForKey:@"farm"], [photo objectForKey:@"server"], [photo objectForKey:@"id"], [photo objectForKey:@"secret"]];
+            
+            NSString *baseURL = [NSString stringWithFormat:@"http://farm%@.static.flickr.com/%@/%@_%@", [photo objectForKey:@"farm"], [photo objectForKey:@"server"], [photo objectForKey:@"id"], [photo objectForKey:@"secret"]];
+            
+            self.url = [NSString stringWithFormat:@"%@.jpg", baseURL];
+            self.largeUrl = [NSString stringWithFormat:@"%@_b.jpg", baseURL];
+            
             //NSLog(self.name);
             //NSLog(self.url);
             
