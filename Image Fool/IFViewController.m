@@ -23,6 +23,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     [self setTrashButtonAppearance];
+    _searchStringLabel.text = kIMAGE_FOOL_HELP_TEXT;
+
     
     self.collectionView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
 
@@ -38,6 +40,20 @@
     
     self.flickrSearchQueue = [[NSOperationQueue alloc] init];
     self.flickrSearchQueue.maxConcurrentOperationCount = 2;
+    
+    self.doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
+    [_doubleTapGesture setNumberOfTapsRequired:2];
+    [_doubleTapGesture setNumberOfTouchesRequired:1];
+    //[_doubleTapGesture requireGestureRecognizerToFail:_doubleTapGesture];
+
+    [self.view addGestureRecognizer:_doubleTapGesture];
+    
+    self.singleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processSingleTap:)];
+    [_singleTapGesture setNumberOfTapsRequired:1];
+    [_singleTapGesture setNumberOfTouchesRequired:1];
+    [_singleTapGesture requireGestureRecognizerToFail:_doubleTapGesture];
+    
+    [self.view addGestureRecognizer:_singleTapGesture];
 
     [self reloadFlickr];
 }
@@ -165,25 +181,70 @@
     return imageCell;
 }
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+
+#pragma mark Tap Methods
+
+
+- (void) processDoubleTap:(UITapGestureRecognizer *)sender
 {
-    
-    NSInteger row = [indexPath row];
-    NSString *searchSuffix = [NSString stringWithFormat:@"%c", [imageLetters characterAtIndex: row]];
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint point = [sender locationInView:_collectionView];
+        NSIndexPath *indexPath = [_collectionView indexPathForItemAtPoint:point];
+        if (indexPath) {
+            NSInteger row = [indexPath row];            
+            
+            // first, get the large URL
+            //
+            NSString *searchSuffix = [NSString stringWithFormat:@"%c", [imageLetters characterAtIndex: row]];
+            
+            // build the key to look up the flickrPhoto
+            NSString *key;
+            if (_searchPrefix) {
+                key = [_searchPrefix stringByAppendingFormat:@"%@", searchSuffix];
+            } else {
+                key = searchSuffix;
+            }
 
-    if (_searchPrefix) {
-        self.searchPrefix = [_searchPrefix stringByAppendingFormat:@"%@", searchSuffix];
-    } else {
-        self.searchPrefix = searchSuffix;
+            IFFlickrPhoto *flickrPhoto = [_photoDictionary objectForKey:key];
+            
+            // second, build and present the full image VC
+            //
+            IFFullImageViewController *fullImageVC = [[IFFullImageViewController alloc]
+                                                      init];
+            fullImageVC.delegate = self;
+            fullImageVC.flickrPhoto = flickrPhoto;
+            
+            UINavigationController *navigationController = [[UINavigationController alloc]
+                                                            initWithRootViewController:fullImageVC];
+            [self presentViewController:navigationController animated:YES completion: nil];
+
+        }
+
     }
-    
-    _searchStringLabel.text = _searchPrefix;
-    [self setTrashButtonAppearance];
-    
+}
 
-
-    [self reloadFlickr];
-
+- (void) processSingleTap:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded)  {
+        CGPoint point = [sender locationInView:_collectionView];
+        NSIndexPath *indexPath = [_collectionView indexPathForItemAtPoint:point];
+        if (indexPath)  {
+            NSInteger row = [indexPath row];
+            NSString *searchSuffix = [NSString stringWithFormat:@"%c", [imageLetters characterAtIndex: row]];
+            
+            if (_searchPrefix) {
+                self.searchPrefix = [_searchPrefix stringByAppendingFormat:@"%@", searchSuffix];
+            } else {
+                self.searchPrefix = searchSuffix;
+            }
+            
+            _searchStringLabel.text = _searchPrefix;
+            [self setTrashButtonAppearance];
+                        
+            [self reloadFlickr];
+        }
+    }
 }
 
 #pragma mark Trash Methods
@@ -222,8 +283,8 @@
 - (IBAction)trashPressed:(id)sender
 {
     self.searchPrefix = nil;
-    _searchStringLabel.text = @"tap an image to search by the letters";
-
+    _searchStringLabel.text = kIMAGE_FOOL_HELP_TEXT;
+    
     [self setTrashButtonAppearance];
     [self reloadFlickr];
 }
@@ -248,6 +309,14 @@
     });
     
 }
+#pragma mark IFFullImageVCDelegate Methods
+
+- (void)didDismissModalView;
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark Boilerplat Methods
 
 - (void)didReceiveMemoryWarning
 {

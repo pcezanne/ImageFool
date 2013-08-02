@@ -22,6 +22,8 @@
 		AA1B2A7617AAEFDF00D2C926 /* IFURLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1B2A7517AAEFDF00D2C926 /* IFURLImage.m */; };
 		AA1B2A7817AAF4D700D2C926 /* IFImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA1B2A7717AAF4D700D2C926 /* IFImageCell.xib */; };
 		AA1B2A8217AB046A00D2C926 /* IFFlickrPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1B2A8117AB046A00D2C926 /* IFFlickrPhoto.m */; };
+		AADE338E17AC0BE200F4189A /* IFFullImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AADE338C17AC0BE200F4189A /* IFFullImageViewController.m */; };
+		AADE338F17AC0BE200F4189A /* IFFullImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AADE338D17AC0BE200F4189A /* IFFullImageViewController.xib */; };
 		AAFB9E6717ABE5F2001699B4 /* 217-trash.png in Resources */ = {isa = PBXBuildFile; fileRef = AAFB9E6517ABE5F2001699B4 /* 217-trash.png */; };
 		AAFB9E6817ABE5F2001699B4 /* 217-trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAFB9E6617ABE5F2001699B4 /* 217-trash@2x.png */; };
 /* End PBXBuildFile section */
@@ -45,12 +47,14 @@
 		AA1B2A6417AADE6E00D2C926 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/IFViewController.xib; sourceTree = "<group>"; };
 		AA1B2A6E17AAE22500D2C926 /* IFImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IFImageCell.h; path = Classes/IFImageCell/IFImageCell.h; sourceTree = "<group>"; };
 		AA1B2A6F17AAE22500D2C926 /* IFImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IFImageCell.m; path = Classes/IFImageCell/IFImageCell.m; sourceTree = "<group>"; };
-		AA1B2A7117AAEC9100D2C926 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AA1B2A7417AAEFDF00D2C926 /* IFURLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFURLImage.h; sourceTree = "<group>"; };
 		AA1B2A7517AAEFDF00D2C926 /* IFURLImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFURLImage.m; sourceTree = "<group>"; };
 		AA1B2A7717AAF4D700D2C926 /* IFImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IFImageCell.xib; sourceTree = "<group>"; };
 		AA1B2A8017AB046A00D2C926 /* IFFlickrPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IFFlickrPhoto.h; path = "Image Fool/Classes/Flickr/IFFlickrPhoto.h"; sourceTree = SOURCE_ROOT; };
 		AA1B2A8117AB046A00D2C926 /* IFFlickrPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IFFlickrPhoto.m; path = "Image Fool/Classes/Flickr/IFFlickrPhoto.m"; sourceTree = SOURCE_ROOT; };
+		AADE338B17AC0BE200F4189A /* IFFullImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IFFullImageViewController.h; path = Classes/IFFullImageVC/IFFullImageViewController.h; sourceTree = "<group>"; };
+		AADE338C17AC0BE200F4189A /* IFFullImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IFFullImageViewController.m; path = Classes/IFFullImageVC/IFFullImageViewController.m; sourceTree = "<group>"; };
+		AADE338D17AC0BE200F4189A /* IFFullImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IFFullImageViewController.xib; path = Classes/IFFullImageVC/IFFullImageViewController.xib; sourceTree = "<group>"; };
 		AAFB9E6517ABE5F2001699B4 /* 217-trash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "217-trash.png"; sourceTree = "<group>"; };
 		AAFB9E6617ABE5F2001699B4 /* 217-trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "217-trash@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,7 +76,6 @@
 		AA1B2A3917AADE6E00D2C926 = {
 			isa = PBXGroup;
 			children = (
-				AA1B2A7117AAEC9100D2C926 /* QuartzCore.framework */,
 				AA1B2A4B17AADE6E00D2C926 /* Image Fool */,
 				AA1B2A4417AADE6E00D2C926 /* Frameworks */,
 				AA1B2A4317AADE6E00D2C926 /* Products */,
@@ -100,7 +103,6 @@
 		AA1B2A4B17AADE6E00D2C926 /* Image Fool */ = {
 			isa = PBXGroup;
 			children = (
-				AA1B2A7917AAFE7800D2C926 /* Flickr Interface */,
 				AA1B2A6B17AADE8100D2C926 /* Classes */,
 				AA1B2A5417AADE6E00D2C926 /* IFAppDelegate.h */,
 				AA1B2A5517AADE6E00D2C926 /* IFAppDelegate.m */,
@@ -127,6 +129,11 @@
 		AA1B2A6B17AADE8100D2C926 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				AAFB9E6917AC0A25001699B4 /* IFFullImage */,
+				AADE338B17AC0BE200F4189A /* IFFullImageViewController.h */,
+				AADE338C17AC0BE200F4189A /* IFFullImageViewController.m */,
+				AADE338D17AC0BE200F4189A /* IFFullImageViewController.xib */,
+				AA1B2A7917AAFE7800D2C926 /* Flickr Interface */,
 				AA1B2A7317AAEFDF00D2C926 /* IFURLImage */,
 				AA1B2A6D17AAE1D200D2C926 /* IFImageCell */,
 				AA1B2A6C17AADE9100D2C926 /* IFViewController */,
@@ -181,6 +188,13 @@
 				AAFB9E6617ABE5F2001699B4 /* 217-trash@2x.png */,
 			);
 			path = graphics;
+			sourceTree = "<group>";
+		};
+		AAFB9E6917AC0A25001699B4 /* IFFullImage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = IFFullImage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +257,7 @@
 				AA1B2A7817AAF4D700D2C926 /* IFImageCell.xib in Resources */,
 				AAFB9E6717ABE5F2001699B4 /* 217-trash.png in Resources */,
 				AAFB9E6817ABE5F2001699B4 /* 217-trash@2x.png in Resources */,
+				AADE338F17AC0BE200F4189A /* IFFullImageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +274,7 @@
 				AA1B2A7017AAE22500D2C926 /* IFImageCell.m in Sources */,
 				AA1B2A7617AAEFDF00D2C926 /* IFURLImage.m in Sources */,
 				AA1B2A8217AB046A00D2C926 /* IFFlickrPhoto.m in Sources */,
+				AADE338E17AC0BE200F4189A /* IFFullImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

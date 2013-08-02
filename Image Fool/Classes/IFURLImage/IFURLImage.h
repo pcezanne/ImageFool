@@ -8,15 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#if 0
-Flickr keys
-Key:
-bfd2ef81664bbae62c982dd42752eb5d
-
-Secret:
-68269ff31ae2d49e
-#endif
-
 @interface IFURLImage : NSObject
 
 @property (nonatomic, strong) NSURL *imageURL;
