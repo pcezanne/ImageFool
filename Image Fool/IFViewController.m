@@ -67,16 +67,14 @@
             NSString *searchSuffix = [NSString stringWithFormat:@"%c", [imageLetters characterAtIndex:i]];
             
             if (_searchPrefix) {
-                searchString = [NSString stringWithFormat:@"%@%@", _searchPrefix, searchSuffix];
+                searchString = [NSString stringWithFormat:@"%@%@", weakSelf.searchPrefix, searchSuffix];
             } else {
                 searchString = searchSuffix;    // just the suffix since prefix is empty.
             }
             [newFlickr loadFlickrPhotos:searchString];
             
-            [_photoDictionary setObject:newFlickr forKey:searchString];
-            
-            //[weakSelf.collectionView reloadData];
-            
+            [weakSelf.photoDictionary setObject:newFlickr forKey:searchString];
+                        
         }];
         
         [operation setQueuePriority:NSOperationQueuePriorityVeryLow];
