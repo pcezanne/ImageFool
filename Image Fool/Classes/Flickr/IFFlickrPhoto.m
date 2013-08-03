@@ -37,7 +37,6 @@
                                  options:kNilOptions
                                  error:&error];
         
-        
         // extract the title and name
         NSArray *photos = [[results objectForKey:@"photos"] objectForKey:@"photo"];
         
@@ -54,22 +53,8 @@
             
             //NSLog(self.name);
             //NSLog(self.url);
-            
-            // now tell the delegate to update just the cell with the
-            // last character of the search
-            
-            NSUInteger length = [searchString length];
-            NSString *last = [NSString stringWithFormat:@"%c", [searchString characterAtIndex: length - 1]];
-
-            
-            
-            if([_delegate respondsToSelector:@selector(urlRecieved:)])
-                [_delegate urlRecieved:last];
         }
     }
 }
-
-
-
 
 @end
