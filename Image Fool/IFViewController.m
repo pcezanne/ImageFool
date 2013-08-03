@@ -9,6 +9,7 @@
 #import "IFViewController.h"
 #import "IFImageCell.h"
 #import "IFURLImage.h"
+#import "IFFlickrPhoto.h"
 
 
 @interface IFViewController () 
@@ -77,7 +78,6 @@
 
           
             IFFlickrPhoto *newFlickr = [[IFFlickrPhoto alloc] init];
-            newFlickr.delegate = weakSelf;
             NSString *searchString;
             
             NSString *searchSuffix = [NSString stringWithFormat:@"%c", [imageLetters characterAtIndex:i]];
@@ -90,6 +90,14 @@
             [newFlickr loadFlickrPhotos:searchString];
             
             [weakSelf.photoDictionary setObject:newFlickr forKey:searchString];
+            
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            
+            NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.collectionView reloadItemsAtIndexPaths:indexPaths];
+            });
                         
         }];
         
@@ -289,26 +297,7 @@
     [self reloadFlickr];
 }
 
-#pragma mark IFFlickrPhotoDelegate Methods
 
-- (void) urlRecieved:(NSString *) last;
-{
-    // figure out which cell finished, we do this based on the passed character
-    NSRange range = [imageLetters rangeOfString:last options:NSCaseInsensitiveSearch range:NSMakeRange(0, kIMAGE_FOOL_MAX_CELLS-1)];
-
-    if (range.location == NSNotFound) {
-        return;
-    }
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:range.location inSection:0];
-    
-    NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self.collectionView reloadItemsAtIndexPaths:indexPaths];
-    });
-    
-}
 #pragma mark IFFullImageVCDelegate Methods
 
 - (void)didDismissModalView;

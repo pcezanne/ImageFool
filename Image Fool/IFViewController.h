@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IFFlickrPhoto.h"
 #import "IFFullImageViewController.h"
 
 #define kIMAGE_FOOL_MAX_CELLS 26 // 26 letters in the alphabet 
@@ -17,7 +16,7 @@ static NSString * const imageLetters = @"abcdefghijklmnopqrstuvwxyz";
 
 
 @interface IFViewController : UIViewController <UICollectionViewDataSource,
-UICollectionViewDelegate, IFFlickrPhotoDelegate, IFFullImageVCDelegate>
+UICollectionViewDelegate, IFFullImageVCDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *searchStringLabel;

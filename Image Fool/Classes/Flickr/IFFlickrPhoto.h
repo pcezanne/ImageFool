@@ -9,12 +9,8 @@
 #import <Foundation/Foundation.h>
 
 
-@protocol IFFlickrPhotoDelegate;
 
 @interface IFFlickrPhoto : NSObject
-
-@property (weak,nonatomic) NSObject <IFFlickrPhotoDelegate> *delegate;
-
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *url;
@@ -22,13 +18,7 @@
 
 - (void)loadFlickrPhotos:(NSString *) searchString;
 
-
 @end
 
 
-@protocol IFFlickrPhotoDelegate <NSObject>
 
-- (void) urlRecieved:(NSString *) last;
-
-
-@end
